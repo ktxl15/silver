@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>silver</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+	<body>
+		<div class="topall">
+		<div class="top">
+			<div class="top-w">
+			<div class="logo"><img src="img/logo1.png" ></div>
+			<div class="list">
+				<ul class="listul">
+					<li class="listli">Home</li>
+					<li class="listli">Tell you</li>
+					<li class="listli">Content</li>
+					<li class="listli">About</li>
+					<li class="listli">Call me</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+	</div>
+		<div class="moveimg">
+			<div class="moveimg-w">
+				<div class="img"><img src="img/2c2727efe2244c87ab138f5614b34d95.jpeg" ></div>
+				<div class="img"><img src="img/3ab5e487e0be4620dfd28db73027d7d2.jpeg" ></div>
+				<div class="img"><img src="img/81e32db4e8014c62d43ac0cebb196003.jpeg" ></div>
+				<div class="movetext"><span class="movetext-span">A contented mind is perpetual feast.</span></div>
+			</div>
+			<div class="move-yuan">
+				<div class="yuan"></div>
+				<div class="yuan"></div>
+				<div class="yuan"></div>
+			</div>
+		</div>
+		<div class="tellyou">
+			<div class="tell-mask"></div>
+			<div class="tell-up">
+				　Life is a sail trip full of chances and challenges.
+			</div>
+		</div>	
+		<div class="content">
+			<div class="content-mask"></div>
+			<div class="content-w">
+				<div class="img-up">
+					<div class="img-text">I'm sincere. You are indifferent. </div>
+				</div>
+				<div class="img-down">
+					<div class="img-text1">We shan soft water stars, less than half of your eyes.</div>
+				</div>
+			</div>
+		</div>
+		<div class="about">
+			<div class="about-mask"></div>
+			<div class="about-left"></div>
+			<div class="about-up"></div>
+			<div class="about-down"></div>
+			<div class="about-main">
+				<div class="main-h1" data-so="Nothing is impossible!">Nothing is impossible!</div>
+			</div>
+		</div>
+		<div class="foot">
+			<div class="foot-w">
+				<ul class="icon-ul">
+					<li class="icon-li"><img src="img/github-fill.png" ></li>
+					<li class="icon-li"><img src="img/instagram.png" ></li>
+					<li class="icon-li"><img src="img/邮箱.png" ></li>
+				</ul>
+				<div class="foot-int">
+					<input type="text" class="input-text" placeholder="Knowledge is power.">
+					<button class="button"><img src="img/搜索.png" class="suo"></button>
+				</div>
+				<div class="foot-h1">Practice makes perfect.</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){	
+			$('.movetext').animate({'opacity':'1'},400)
+			$(window).scroll(function(){
+				var top = $(window).scrollTop()
+				var hei = $('.top').height()
+				var go = $('.moveimg').height()
+				var tm = $('.tell-mask').height()
+				if(top>hei){
+					$('.top').addClass('addtop')
+					$('.logo').addClass('addlogo')
+				}else{
+					$('.top').removeClass('addtop')
+					$('.logo').removeClass('addlogo')
+				}
+				if(top>go/2-top){
+					$('.tell-up').addClass('addup')
+				}
+				if(top> go+tm-(top/2)){
+					$('.img-up').animate({'margin-left':'0'},10).animate({'opacity':'1'},10)
+					$('.img-down').animate({'margin-left':'600'},10).animate({'opacity':'1'},10)
+					$('.top').addClass('addtop1')
+				}else{
+					$('.top').removeClass('addtop1')
+				}
+				if(top> go+tm*2){
+					$('.about-left').addClass('add-Al')
+				}else{
+					$('.about-left').removeClass('add-Al')
+				}
+				
+				var jo = top/1000
+				var c = Math.ceil(jo)
+				$('.listli').eq(c).addClass('addli').siblings().removeClass('addli')
+			})
+			$('.listli').click(function(){
+				var index = $(this).index()
+				$(this).addClass('addli').siblings().removeClass('addli')
+				var hei = index*800
+				$('html,body').animate({'scrollTop':hei},800) 
+			})
+			$('.img').eq(2).addClass('addimg')
+			$('.yuan').eq(2).css('background','white')
+			$('.yuan').click(function(){
+				var index = $(this).index()
+				$('.img').eq(index).addClass('addimg').siblings().removeClass('addimg')
+				$('.yuan').eq(index).css('background','white').siblings().css('background','gray')
+				console.log(index)
+			})
+			$('.img-up').mouseenter(function(){
+				$('.content-mask').addClass('addcontent').removeClass('addcontent1')
+			})
+			$('.img-up').mouseleave(function(){
+				$('.content-mask').removeClass('addcontent')
+			})
+			$('.img-down').mouseenter(function(){
+				$('.content-mask').addClass('addcontent1').removeClass('addcontent')
+			})
+			$('.img-down').mouseleave(function(){
+				$('.content-mask').removeClass('addcontent1')
+			})
+			$('.about').mouseenter(function(){
+				$('.about-up').addClass('add-BU')
+				$('.about-down').addClass('add-BD')
+				$('.about-left').addClass('add-Al')
+				$('.about-mask').addClass('addabout-mask')
+				$('.about-main').css({'filter':'blur(0px)saturate(450%)'})
+			})
+			$('.about').mouseleave(function(){
+				$('.about-up').removeClass('add-BU')
+				$('.about-down').removeClass('add-BD')
+				$('.about-left').removeClass('add-Al')
+				$('.about-mask').removeClass('addabout-mask')
+				$('.about-main').css({'filter':'blur(10px)'})
+			})
+			$('.input-text').blur(function(){
+				$('.button').css({'width':'0'})
+				$('.suo').css({'opacity':'0'})
+			})
+			$('.input-text').focus(function(){
+				$('.button').css({'width':'30px'})
+				$('.suo').css({'opacity':'1'})
+			})
+		})
+	</script>
+</html>
